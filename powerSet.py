@@ -56,24 +56,21 @@ def pSet(array,index):
 
 ##### Clean Code #####
 def pSet_Clean(array,index):
-    allSubsets = []                # This is our primary 'set'
-    if (index == len(array)) and ([] not in allSubsets): # base case, runs once
-        allSubsets.append([]) # we append our empty set []
+    allSubsets = [] # This is our primary set list
+    if (index == len(array)) and ([] not in allSubsets): 
+        allSubsets.append([]) # base case runs once, appends empty set
     else:
         allSubsets = pSet_Clean(array,index+1) # recurse and update index
-        item = array[index] # store the current item in a variable
+        item = array[index] # not essential but easier to read
 
         moreSubsets = [] # to store our modded subset
-        for subset in allSubsets: # for each subset item in allSubsets
-            newSubset = [] # create a new subset
+        for subset in allSubsets: 
+            newSubset = [] # temporary subset for modding
             newSubset.extend(subset) # must use extend, this is essential
-                                    # if you use append, it will add the subset as an item
-            newSubset.append(item) # then you add the current item to the subset
-                                    # we just took from allsubsets
-            moreSubsets.append(newSubset) #add this to moresubsets
-        allSubsets.extend(moreSubsets) # then add all the subsets we just created into allsubsets
+            newSubset.append(item) # add the current item to the subset (mod it)
+            moreSubsets.append(newSubset) # add to moresubsets
+        allSubsets.extend(moreSubsets) # add all the subsets we just created into allsubsets
     return allSubsets
-
 
 ##### Testing #####
 
